@@ -14,3 +14,13 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require bootstrap-sprockets
+
+$(document).ready(function() {
+  setTimeout(function() {
+    $('#notice_wrapper').fadeOut(function() {
+      $(this).remove();
+    })
+  }, 4500);
+
+})
