@@ -19,4 +19,5 @@ end
 gem 'bootstrap-sass'
 gem 'haml', '~> 4.0.6'
 gem 'devise'
-
+gem 'simple_form'
+gem 'jquery-ui-rails'

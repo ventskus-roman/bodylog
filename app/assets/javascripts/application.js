@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
+//= require jquery-ui
 
 $(document).ready(function() {
   setTimeout(function() {

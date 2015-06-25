@@ -25,10 +25,11 @@
             = link_to "Bodylog", root_path, class: "navbar-brand"
           .collapse.navbar-collapse
             %ul.nav.navbar-nav
-              %li
-                = link_to "Лента", root_path
               - if user_signed_in?
                 %li
+                  = link_to "Workouts", workouts_path
+                %li
+                  = link_to "Add workout", new_workout_path
             %p.navbar-text.pull-right
               - if user_signed_in?
                 = link_to current_user.email, edit_user_registration_path, class: 'navbar-link'
