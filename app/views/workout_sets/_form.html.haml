@@ -1,0 +1,5 @@
+= simple_form_for([workout, workout.workout_sets.build], html: { class: "form-horizontal set_form"}) do |f|
+  = f.association :excercise, collection: Excercise.all, prompt: "Choose a excercise"
+  = f.input :weight, label: "Weight", input_html: { class: "form-control" }
+  = f.input :reps, label: "Reps", input_html: { class: "form-control" }
+  = f.submit

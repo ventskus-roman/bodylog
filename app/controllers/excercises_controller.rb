@@ -11,7 +11,7 @@ class ExcercisesController < ApplicationController
   def create
     @excercise = Excercise.new(excercise_params)
     if @excercise.save
-      redirect_to edit_excercise_path(@excercise)
+      redirect_to excercises_path
     else
       render 'new'
     end
@@ -26,7 +26,7 @@ class ExcercisesController < ApplicationController
 
   def update
     if @excercise.update(excercise_params)
-      redirect_to excercise_path(@excercise)
+      redirect_to excercises_path
     else
       render 'edit'
     end
