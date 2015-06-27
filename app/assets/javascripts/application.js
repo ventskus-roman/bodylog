@@ -24,4 +24,7 @@ $(document).ready(function() {
     })
   }, 4500);
 
+  $('#workout_date').datepicker({ dateFormat: 'dd.mm.yy' });
+
+
 })

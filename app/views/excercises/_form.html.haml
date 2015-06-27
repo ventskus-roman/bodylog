@@ -1,0 +1,4 @@
+= simple_form_for(excercise, html: { class: "form-horizontal workout_form"}) do |f|
+  = f.input :name, label: "Title", input_html: { class: "form-control" }
+  = f.input :description, label: "Description", as: :string, input_html: { class: "form-control" }
+  = f.submit

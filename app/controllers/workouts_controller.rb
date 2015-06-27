@@ -13,7 +13,7 @@ class WorkoutsController < ApplicationController
 
   def update
     if @workout.update(workout_params)
-      redirect_to edit_workout_path(@workout)
+      redirect_to workouts_path
     else
       render 'edit'
     end
@@ -29,14 +29,14 @@ class WorkoutsController < ApplicationController
   def create
     @workout = current_user.workouts.build(workout_params)
     if @workout.save
-      redirect_to edit_workout_path(@workout)
+      redirect_to workouts_path
     else
       render 'new'
     end
   end
 
   private
-  
+
   def find_workout
     @workout = Workout.find(params[:id])
   end
