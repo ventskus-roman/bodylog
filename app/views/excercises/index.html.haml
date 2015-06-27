@@ -5,3 +5,4 @@
     #excercise
       = link_to excercise.name, excercise_path(excercise)
       = excercise.description
+      = excercise.category ? excercise.category.name : "no category"
