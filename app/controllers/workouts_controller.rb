@@ -29,7 +29,7 @@ class WorkoutsController < ApplicationController
   def create
     @workout = current_user.workouts.build(workout_params)
     if @workout.save
-      redirect_to workouts_path
+      redirect_to workout_workout_sets_path(@workout)
     else
       render 'new'
     end
