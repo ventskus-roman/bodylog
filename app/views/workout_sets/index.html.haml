@@ -5,6 +5,8 @@
         = set.excercise.name
         = set.weight
         = set.reps
+        .pull-right
+          = link_to 'Удалить', workout_workout_set_path(@workout, set), method: :delete, data: { confirm: 'Вы уверены?' }
 
 #new_set
   = render 'form', set: @set, workout: @workout

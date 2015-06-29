@@ -36,6 +36,8 @@ class WorkoutSetsController < ApplicationController
   end
 
   def destroy
+    @set.destroy
+    redirect_to workout_workout_sets_path(@workout)
   end
 
   private

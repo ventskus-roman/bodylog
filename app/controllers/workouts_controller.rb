@@ -20,6 +20,8 @@ class WorkoutsController < ApplicationController
   end
 
   def destroy
+    @workout.destroy
+    redirect_to workouts_path
   end
 
   def new

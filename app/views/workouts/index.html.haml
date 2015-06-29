@@ -1,6 +1,9 @@
 .pull-right
   = link_to "Add workout", new_workout_path
+%br/
 #index_workouts
   - @workouts.each do |workout|
     #workout
       = link_to workout.date.strftime("%d %B %Y"), workout_workout_sets_path(workout)
+      .pull-right
+        = link_to "Удалить", workout, method: :delete, data: { confirm: "Вы уверены?"}
