@@ -2,7 +2,7 @@ class WorkoutsController < ApplicationController
   before_action :find_workout, only: [:show, :edit, :update, :destroy]
 
   def index
-    @workouts = current_user.workouts
+    @workouts = current_user.workouts.order("date DESC, created_at DESC")
   end
 
   def show

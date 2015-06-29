@@ -1,9 +1,11 @@
 class WorkoutSetsController < ApplicationController
   before_action :find_set, only: [:show, :edit, :update, :destroy]
   before_action :find_workout
+  before_action :find_workout_sets, only: [:index, :create]
 
   def index
-    @sets = @workout.workout_sets
+    @last_set = @workout.workout_sets.order('created_at').last
+    @has_sets = @workout.workout_sets.count > 0
   end
 
   def show
@@ -21,7 +23,7 @@ class WorkoutSetsController < ApplicationController
     if @set.save
       redirect_to workout_workout_sets_path(@workout)
     else
-      render 'new'
+      render 'index'
     end
   end
 
@@ -52,5 +54,11 @@ class WorkoutSetsController < ApplicationController
 
   def find_workout
     @workout = Workout.find(params[:workout_id])
+  end
+
+  private
+
+  def find_workout_sets
+    @sets = @workout.workout_sets
   end
 end

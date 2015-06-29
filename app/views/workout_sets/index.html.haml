@@ -1,7 +1,10 @@
-.pull-right
-  = link_to "Add set", new_workout_workout_set_path(@workout)
 #sets
   - @sets.each do |set|
-    = set.excercise.name
-    = set.weight
-    = set.reps
+    #set
+      - if set.id
+        = set.excercise.name
+        = set.weight
+        = set.reps
+
+#new_set
+  = render 'form', set: @set, workout: @workout

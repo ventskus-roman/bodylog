@@ -3,5 +3,4 @@
 #index_workouts
   - @workouts.each do |workout|
     #workout
-      = link_to workout.title, workout_path(workout)
-      = workout.date
+      = link_to workout.date.strftime("%d %B %Y"), workout_workout_sets_path(workout)
