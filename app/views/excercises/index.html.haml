@@ -1,8 +1,8 @@
 .pull-right
-  = link_to "Add excercise", new_excercise_path
+  = link_to "Добавить упражнение", new_excercise_path
 #excercises
   - @excercises.each do |excercise|
     #excercise
       = link_to excercise.name, excercise_path(excercise)
       = excercise.description
-      = excercise.category ? excercise.category.name : "no category"
+      = excercise.category ? excercise.category.name : "без категории"
