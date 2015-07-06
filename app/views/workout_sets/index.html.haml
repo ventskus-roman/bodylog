@@ -1,26 +1,34 @@
 .links
   = link_to 'Статистика тренировки', workout_statistic_path(@workout)
 %br
-#sets
-  %table.table.table-hover.table-condensed
-    %thead
-      %tr
-        %td Упражнение
-        %td Вес
-        %td Повторения
-        %td Время
-        %td Удалить
-    %tbody
-      - @sets.each_with_index do |set, i|
-        - prev_set = @sets[i-1] unless i == 0
-        - first_excercise_show = !prev_set || prev_set.excercise.id != set.excercise.id
-        %tr{:class => ("info" if first_excercise_show)}
-          - if set.id
-            %td= first_excercise_show ? set.excercise.name : ""
-            %td{:class => ("success" if set.has_max_weight)}= set.weight
-            %td{:class => ("success" if set.has_max_reps)}= set.reps
-            %td{:class => ("success" if set.has_min_time)}= time_from_duration set
-            %td= link_to 'Удалить', workout_workout_set_path(@workout, set), method: :delete, data: { confirm: 'Вы уверены?' }
+- if @sets.length > 0
+  #sets
+    %table.table.table-hover.table-condensed
+      %thead
+        %tr
+          %td Упражнение
+          %td Вес
+          %td Повторения
+          %td Время
+          %td Удалить
+      %tbody
+        - @sets.each_with_index do |set, i|
+          - prev_set = @sets[i-1] unless i == 0
+          - first_excercise_show = !prev_set || prev_set.excercise.id != set.excercise.id
+          - if first_excercise_show
+            %tr{:class => ("info" if first_excercise_show)}
+              %td= first_excercise_show ? set.excercise.name : ""
+              %td
+              %td
+              %td
+              %td
+          %tr
+            - if set.id
+              %td
+              %td{:class => ("success" if set.has_max_weight)}= set.weight
+              %td{:class => ("success" if set.has_max_reps)}= set.reps
+              %td{:class => ("success" if set.has_min_time)}= time_from_duration set
+              %td= link_to 'Удалить', workout_workout_set_path(@workout, set), method: :delete, data: { confirm: 'Вы уверены?' }
 
 #new_set
   = render 'form', set: @set, workout: @workout
