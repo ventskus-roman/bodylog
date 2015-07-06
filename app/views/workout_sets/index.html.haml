@@ -2,15 +2,23 @@
   = link_to 'Статистика тренировки', workout_statistic_path(@workout)
 %br
 #sets
-  - @sets.each do |set|
-    #set
-      - if set.id
-        = set.excercise.name
-        = set.weight
-        = set.reps
-        = time_from_duration set
-        .pull-right
-          = link_to 'Удалить', workout_workout_set_path(@workout, set), method: :delete, data: { confirm: 'Вы уверены?' }
+  %table.table.table-hover.table-condensed
+    %thead
+      %tr
+        %td Упражнение
+        %td Вес
+        %td Повторения
+        %td Время
+        %td Удалить
+    %tbody
+      - @sets.each do |set|
+        %tr
+          - if set.id
+            %td= set.excercise.name
+            %td= set.weight
+            %td= set.reps
+            %td= time_from_duration set
+            %td= link_to 'Удалить', workout_workout_set_path(@workout, set), method: :delete, data: { confirm: 'Вы уверены?' }
 
 #new_set
   = render 'form', set: @set, workout: @workout
