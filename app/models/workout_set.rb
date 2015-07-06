@@ -1,13 +1,11 @@
 class WorkoutSet < ActiveRecord::Base
   belongs_to :excercise
   belongs_to :workout
-  attr_accessor :hours, :minutes, :seconds
+  attr_accessor :hours, :minutes, :seconds, :has_max_weight, :has_min_time, :has_max_reps
   before_save :update_duration
   after_initialize :parse_duration
 
   validates :excercise, :workout, presence: { message: "не может быть пустым" }
-
-
 
   private
 

@@ -6,6 +6,7 @@ class WorkoutSetsController < ApplicationController
   def index
     @last_set = @workout.workout_sets.order('created_at').last
     @has_sets = @workout.workout_sets.count > 0
+    prepare_max_params(@sets)
   end
 
   def show
@@ -63,4 +64,31 @@ class WorkoutSetsController < ApplicationController
   def find_workout_sets
     @sets = @workout.workout_sets.order("excercise_id")
   end
+
+  private
+
+  def prepare_max_params(sets)
+    sets.group('"excercise_id"').having('weight = MAX(weight)').each do |set|
+      sets.each do |inner_set|
+        if inner_set.id == set.id
+          inner_set.has_max_weight = true
+        end
+      end
+    end
+    sets.group('"excercise_id"').having('reps = MAX(reps)').each do |set|
+      sets.each do |inner_set|
+        if inner_set.id == set.id
+          inner_set.has_max_reps = true
+        end
+      end
+    end
+    sets.where("duration > 0").group('"excercise_id"').having('duration = MIN(duration)').each do |set|
+      sets.each do |inner_set|
+        if inner_set.id == set.id
+          inner_set.has_min_time = true
+        end
+      end
+    end
+  end
+
 end

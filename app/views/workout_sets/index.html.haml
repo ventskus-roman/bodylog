@@ -17,9 +17,9 @@
         %tr{:class => ("info" if first_excercise_show)}
           - if set.id
             %td= first_excercise_show ? set.excercise.name : ""
-            %td= set.weight
-            %td= set.reps
-            %td= time_from_duration set
+            %td{:class => ("success" if set.has_max_weight)}= set.weight
+            %td{:class => ("success" if set.has_max_reps)}= set.reps
+            %td{:class => ("success" if set.has_min_time)}= time_from_duration set
             %td= link_to 'Удалить', workout_workout_set_path(@workout, set), method: :delete, data: { confirm: 'Вы уверены?' }
 
 #new_set
