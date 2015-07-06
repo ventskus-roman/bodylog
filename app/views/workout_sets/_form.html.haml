@@ -2,4 +2,7 @@
   = f.association :excercise, label: "Упражнение", collection: Excercise.all, prompt: "Выберите упражнение", :selected => @has_sets ? @last_set.excercise.id : 0
   = f.input :weight, label: "Вес", input_html: { class: "form-control", value: f.object.weight || @has_sets ? @last_set.weight : 0 }
   = f.input :reps, label: "Повторы", input_html: { class: "form-control", value: f.object.reps || @has_sets ? @last_set.reps : 0 }
+  = f.input :hours, as: :integer, label: 'Часы', input_html: { class: "form-control", value: f.object.hours || @has_sets ? @last_set.hours : 0 }
+  = f.input :minutes, as: :integer, label: 'Минуты', input_html: { class: "form-control", value: f.object.minutes || @has_sets ? @last_set.minutes : 0 }
+  = f.input :seconds, as: :integer, label: 'Секунды', input_html: { class: "form-control", value: f.object.seconds || @has_sets ? @last_set.seconds : 0 }
   = f.submit "Добавить", class: "btn btn-primary"

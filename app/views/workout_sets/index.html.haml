@@ -1,3 +1,6 @@
+.links
+  = link_to 'Статистика тренировки', workout_statistic_path(@workout)
+%br
 #sets
   - @sets.each do |set|
     #set
@@ -5,6 +8,7 @@
         = set.excercise.name
         = set.weight
         = set.reps
+        = time_from_duration set
         .pull-right
           = link_to 'Удалить', workout_workout_set_path(@workout, set), method: :delete, data: { confirm: 'Вы уверены?' }
 

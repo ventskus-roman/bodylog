@@ -1,0 +1,11 @@
+%h1 Статистика тренировки
+.links
+  = link_to "Подходы", workout_workout_sets_path(@workout)
+%br
+.statistic
+  #count
+    = "Количество подходов: #{@sets.count}"
+  #total_reps
+    = "Количество повторений: #{@total_reps}"
+  #total_weight
+    = "Общий поднятый вес, кг: #{@total_weight}"
