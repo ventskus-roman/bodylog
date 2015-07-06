@@ -11,10 +11,12 @@
         %td Время
         %td Удалить
     %tbody
-      - @sets.each do |set|
-        %tr
+      - @sets.each_with_index do |set, i|
+        - prev_set = @sets[i-1] unless i == 0
+        - first_excercise_show = !prev_set || prev_set.excercise.id != set.excercise.id
+        %tr{:class => ("info" if first_excercise_show)}
           - if set.id
-            %td= set.excercise.name
+            %td= first_excercise_show ? set.excercise.name : ""
             %td= set.weight
             %td= set.reps
             %td= time_from_duration set

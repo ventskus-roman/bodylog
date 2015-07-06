@@ -61,6 +61,6 @@ class WorkoutSetsController < ApplicationController
   private
 
   def find_workout_sets
-    @sets = @workout.workout_sets
+    @sets = @workout.workout_sets.order("excercise_id")
   end
 end
