@@ -1,4 +1,10 @@
 - if current_user
-  = image_tag avatar_url current_user
-  .change-avatar
-    = link_to "Сменить аватар", "http://gravatar.com", target: "_blank"
+  .row
+    .col-xs-3
+      = image_tag avatar_url current_user
+      .change-avatar
+        = link_to "Сменить аватар", "http://gravatar.com", target: "_blank"
+    .col-xs-9
+      - if @workouts
+        .parameters
+          = "Дата последней тренировки: #{@workouts.last.date.strftime("%d %B %Y")}"
