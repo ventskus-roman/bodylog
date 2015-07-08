@@ -17,7 +17,10 @@
           - first_excercise_show = !prev_set || prev_set.excercise.id != set.excercise.id
           - if first_excercise_show
             %tr{:class => ("info" if first_excercise_show)}
-              %td= first_excercise_show ? set.excercise.name : ""
+              - if first_excercise_show
+                %td= link_to set.excercise.name, excercise_statistic_path(set.excercise)
+              - else
+                %td
               %td
               %td
               %td

@@ -35,6 +35,11 @@ class ExcercisesController < ApplicationController
   def destroy
   end
 
+  def statistic
+    @excercise = Excercise.find(params[:excercise_id])
+    @sets = @excercise.workout_sets.joins(:workout).where("user_id", current_user.id).order("date DESC, created_at ASC")
+  end
+
   private
 
   def find_excercise
