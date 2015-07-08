@@ -38,6 +38,21 @@ class ExcercisesController < ApplicationController
   def statistic
     @excercise = Excercise.find(params[:excercise_id])
     @sets = @excercise.workout_sets.joins(:workout).where("user_id", current_user.id).order("date DESC, created_at ASC")
+    max_weights_sets = @excercise.workout_sets.joins(:workout).group(:date).having('weight = MAX(weight)')
+    @max_weights = max_weights_sets.all.reduce({}) {|hsh,set| hsh[set.workout.date] = set.weight; hsh }
+    @volume = @sets.all.reduce({}) { |hsh,set|
+      set.weight = set.weight ? set.weight : 1
+      set_volume = set.weight * set.reps
+      hsh[set.workout.date] = hsh[set.workout.date] ? hsh[set.workout.date] + set_volume : set_volume
+      hsh
+    }
+    @volume_on_max_weight = max_weights_sets.all.reduce({}) { |hsh,set|
+      set.weight = set.weight ? set.weight : 1
+      set_volume = set.weight * set.reps
+      hsh[set.workout.date] = hsh[set.workout.date] ? hsh[set.workout.date] + set_volume : set_volume
+      hsh
+    }
+
   end
 
   private

@@ -17,6 +17,7 @@
 //= require bootstrap-sprockets
 //= require jquery-ui
 
+
 $(document).ready(function() {
   setTimeout(function() {
     $('#notice_wrapper').fadeOut(function() {

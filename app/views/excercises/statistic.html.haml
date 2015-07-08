@@ -18,7 +18,7 @@
         - if first_excercise_show
           %tr{:class => ("info" if first_excercise_show)}
             - if first_excercise_show
-              %td= set.workout.date.strftime("%d %B %Y")
+              %td= link_to set.workout.date.strftime("%d %B %Y"), workout_workout_sets_path(set.workout)
             - else
               %td
             %td
@@ -30,3 +30,10 @@
             %td{:class => ("success" if set.has_max_weight)}= set.weight
             %td{:class => ("success" if set.has_max_reps)}= set.reps
             %td{:class => ("success" if set.has_min_time)}= time_from_duration set
+
+  %h3 Максимальный вес
+  = line_chart @max_weights
+  %h3 Тренировочный объем (сумма повторений * вес)
+  = line_chart @volume
+  %h3 Тренировочный объем для максимальных весов (сумма повторений * вес)
+  = line_chart @volume_on_max_weight
