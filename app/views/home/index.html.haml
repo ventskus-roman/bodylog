@@ -1,0 +1,4 @@
+- if current_user
+  = image_tag avatar_url current_user
+  .change-avatar
+    = link_to "Сменить аватар", "http://gravatar.com", target: "_blank"
