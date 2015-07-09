@@ -1,15 +1,26 @@
 - if current_user
   .row
-    .col-xs-3
-      = image_tag avatar_url current_user
-      .change-avatar
-        = link_to "Сменить аватар", "http://gravatar.com", target: "_blank"
-    .col-xs-9
-      - if @workouts
-        .parameters
-          = "Дата последней тренировки: #{@workouts.last.date.strftime("%d %B %Y")}"
-          - @max_results.each do |result|
-            .result
-              = link_to result.excercise.name, excercise_statistic_path(result.excercise)
-              = "#{result.weight} кг"
-              = link_to "(#{result.workout.date.strftime("%d %B %Y")})", workout_workout_sets_path(result.workout)
+    .panel.panel-default
+      .panel-body
+        .avatar{style: "float:left;"}
+          = image_tag(avatar_url(current_user), :class => "img-responsive")
+        - if @workouts
+          .parameters{style: "position: relative;left: 20px;"}
+            = "Дата последней тренировки: #{@workouts.last.date.strftime("%d %B %Y")}"
+            - @max_results.each do |result|
+              .result
+                = link_to result.excercise.name, excercise_statistic_path(result.excercise)
+                = "#{result.weight} кг"
+                = link_to "(#{result.workout.date.strftime("%d %B %Y")})", workout_workout_sets_path(result.workout)
+    - @workouts.each do |workout|
+      .workout.panel.panel-default
+        .panel-heading
+          = workout.date.strftime("%d %B %Y")
+          .pull-right
+            = link_to "Подробности", workout_workout_sets_path(workout)
+        .panel-body
+          - workout.workout_sets.each do |set|
+            .set
+              = set.excercise.name
+              = set.weight
+              = set.reps
