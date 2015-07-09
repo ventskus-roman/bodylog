@@ -8,3 +8,8 @@
       - if @workouts
         .parameters
           = "Дата последней тренировки: #{@workouts.last.date.strftime("%d %B %Y")}"
+          - @max_results.each do |result|
+            .result
+              = link_to result.excercise.name, excercise_statistic_path(result.excercise)
+              = "#{result.weight} кг"
+              = link_to "(#{result.workout.date.strftime("%d %B %Y")})", workout_workout_sets_path(result.workout)

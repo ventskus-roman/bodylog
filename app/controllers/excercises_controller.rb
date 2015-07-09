@@ -42,12 +42,14 @@ class ExcercisesController < ApplicationController
     @max_weights = max_weights_sets.all.reduce({}) {|hsh,set| hsh[set.workout.date] = set.weight; hsh }
     @volume = @sets.all.reduce({}) { |hsh,set|
       set.weight = set.weight ? set.weight : 1
+      set.reps = set.reps ? set.reps : 1
       set_volume = set.weight * set.reps
       hsh[set.workout.date] = hsh[set.workout.date] ? hsh[set.workout.date] + set_volume : set_volume
       hsh
     }
     @volume_on_max_weight = max_weights_sets.all.reduce({}) { |hsh,set|
       set.weight = set.weight ? set.weight : 1
+      set.reps = set.reps ? set.reps : 1
       set_volume = set.weight * set.reps
       hsh[set.workout.date] = hsh[set.workout.date] ? hsh[set.workout.date] + set_volume : set_volume
       hsh
