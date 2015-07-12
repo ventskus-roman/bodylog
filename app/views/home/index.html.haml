@@ -6,7 +6,7 @@
           = image_tag(avatar_url(current_user), :class => "img-responsive")
         - if @workouts
           .parameters{style: "position: relative;left: 20px;"}
-            = "Дата последней тренировки: #{@workouts.last.date.strftime("%d %B %Y")}"
+            Рекорды:
             - @max_results.each do |result|
               .result
                 = link_to result.excercise.name, excercise_statistic_path(result.excercise)
@@ -19,8 +19,12 @@
           .pull-right
             = link_to "Подробности", workout_workout_sets_path(workout)
         .panel-body
-          - workout.workout_sets.each do |set|
-            .set
-              = set.excercise.name
-              = set.weight
-              = set.reps
+          - workout.workout_sets.each_with_index do |set, i|
+            - prev_set = workout.workout_sets[i-1] unless i == 0
+            - if prev_set && prev_set.excercise.id == set.excercise.id
+              = ", #{set.weight}x#{set.reps}"
+            - else
+              - if i > 0
+                %br
+              = link_to set.excercise.name, excercise_statistic_path(set.excercise)
+              = "#{set.weight}x#{set.reps}"
