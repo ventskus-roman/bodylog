@@ -23,7 +23,7 @@ $(document).ready(function() {
     $('#notice_wrapper').fadeOut(function() {
       $(this).remove();
     })
-  }, 4500);
+  }, 1500);
 
   $('#workout_date').datepicker({ dateFormat: 'dd.mm.yy' });
 
